@@ -1,0 +1,29 @@
+aid: loom
+url: https://raw.githubusercontent.com/api-evangelist/loom/refs/heads/main/apis.yml
+name: Loom
+x-type: company
+description: >-
+  Loom is an async video messaging platform used by teams to record screen, voice, and camera. The Loom API exposes video upload, embed generation, workspace management, and SCIM provisioning.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Productivity
+  - Video
+  - Async
+  - Communication
+  - SaaS
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://www.loom.com/
+  - type: Plans
+    url: plans/loom-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/loom-rate-limits.yml
+  - type: FinOps
+    url: finops/loom-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
