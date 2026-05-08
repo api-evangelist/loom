@@ -3,7 +3,7 @@ url: https://raw.githubusercontent.com/api-evangelist/loom/refs/heads/main/apis.
 name: Loom
 x-type: company
 description: >-
-  Loom is an async video messaging platform used by teams to record screen, voice, and camera. The Loom API exposes video upload, embed generation, workspace management, and SCIM provisioning.
+  Loom is an async video messaging platform (now part of Atlassian) used by teams to record screen, voice, and camera. The Loom developer platform exposes the recordSDK and embedSDK for embedding recording and playback into other apps, plus SCIM provisioning and SSO/admin APIs available on Business and Enterprise plans.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Productivity
@@ -14,10 +14,87 @@ tags:
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
-apis: []
+apis:
+  - aid: loom:loom-record-sdk
+    name: Loom recordSDK
+    tags:
+      - Recording
+      - SDK
+      - Browser
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://dev.loom.com/
+    baseURL: https://www.loom.com
+    properties:
+      - url: https://dev.loom.com/
+        type: Documentation
+      - url: https://github.com/loomhq/record-sdk
+        type: SDK
+    description: >-
+      Embed Loom's recording experience directly into your web app. The recordSDK lets users record screen, mic, and camera, and uploads the resulting video to a Loom-hosted account. Authenticated via OAuth client credentials issued from the developer portal.
+  - aid: loom:loom-embed-sdk
+    name: Loom embedSDK
+    tags:
+      - Embed
+      - Video
+      - Player
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://dev.loom.com/
+    baseURL: https://www.loom.com
+    properties:
+      - url: https://dev.loom.com/
+        type: Documentation
+    description: >-
+      Embed the Loom video player into a web page or app, with playback controls, captions, and engagement events. Includes an oEmbed endpoint for converting a Loom URL into rich embed HTML.
+  - aid: loom:loom-oembed-api
+    name: Loom oEmbed API
+    tags:
+      - oEmbed
+      - Embed
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.loom.com/v1/oembed
+    baseURL: https://www.loom.com/v1/oembed
+    properties:
+      - url: https://www.loom.com/v1/oembed
+        type: API Reference
+    description: >-
+      oEmbed-compatible endpoint that returns rich embed metadata (HTML, thumbnail, width, height) for a given Loom video URL.
+  - aid: loom:loom-scim-api
+    name: Loom SCIM Provisioning API
+    tags:
+      - SCIM
+      - Provisioning
+      - Identity
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://support.loom.com/hc/en-us/articles/4416322052749
+    baseURL: https://www.loom.com
+    properties:
+      - url: https://support.loom.com/hc/en-us/articles/4416322052749
+        type: Documentation
+    description: >-
+      SCIM 2.0 user and group provisioning endpoint for Enterprise customers. Integrates with Okta, Azure AD, OneLogin, and other IdPs to automate workspace membership.
+  - aid: loom:loom-sso-api
+    name: Loom SSO (SAML) Configuration
+    tags:
+      - SSO
+      - SAML
+      - Identity
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://support.loom.com/hc/en-us/articles/360060748013
+    baseURL: https://www.loom.com
+    properties:
+      - url: https://support.loom.com/hc/en-us/articles/360060748013
+        type: Documentation
+    description: >-
+      SAML 2.0 single sign-on configuration for Enterprise workspaces. Configurable per workspace from the admin console; not a customer-callable REST API but documented as part of the Loom platform integration surface.
 common:
   - type: Website
     url: https://www.loom.com/
+  - type: DeveloperPortal
+    url: https://dev.loom.com/
+  - type: Pricing
+    url: https://www.loom.com/pricing
+  - type: GitHub
+    url: https://github.com/loomhq
   - type: Plans
     url: plans/loom-plans-pricing.yml
   - type: RateLimits

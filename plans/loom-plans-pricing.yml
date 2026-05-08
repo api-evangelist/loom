@@ -5,7 +5,7 @@ provider: Loom
 providerId: loom
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - Productivity
 - Video
@@ -13,30 +13,124 @@ tags:
 - Communication
 - SaaS
 - Plans
-description: Placeholder plans/pricing artifact for Loom. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled against the provider's documentation.
+description: Loom plans reconciled against the public Loom pricing page. Per-seat
+  subscription model. Developer SDK access (recordSDK, embedSDK, oEmbed) is available
+  cross-tier; SCIM and SSO are limited to Enterprise.
 sources:
-- https://www.loom.com/
+- https://www.loom.com/pricing
+- https://dev.loom.com/
 plans:
-- id: loom-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers (Free / Pro / Enterprise / pay-as-you-go,
-    etc.) once pricing is reconciled.
+- id: loom-starter
+  name: Starter
+  type: free
+  description: Free tier for individuals and small teams.
   entries:
-  - label: API Access
-    name: api_access
+  - label: Per-Seat
+    name: seat
     type: flat
-    metric: varies
+    metric: seat
     limit: -1
+    timeFrame: monthly
+    geo: global
+    unit: 1
+    price: 0
+    userMultiplied: false
+  - label: Videos
+    name: videos
+    type: flat
+    metric: video
+    limit: 25
     timeFrame: usage
     geo: global
     unit: 1
-    price: see https://www.loom.com/
+    price: 0
+    userMultiplied: false
+  - label: Recording Length Cap
+    name: recording_minutes
+    type: flat
+    metric: minute
+    limit: 5
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: 0
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Up to 50 Workspace Members
+  - name: 720p Recording
+  - name: Transcriptions in 50+ Languages
+  - name: Slack/Jira/GitHub Integrations
+- id: loom-business
+  name: Business
+  type: paid
+  description: Per-seat plan for teams. Removes recording-length cap and unlocks
+    advanced playback features.
+  entries:
+  - label: Per-Seat
+    name: seat
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: monthly
+    geo: global
+    unit: 1
+    price: 18
+    userMultiplied: true
+  elements:
+  - name: Unlimited Videos
+  - name: Unlimited Recording Length
+  - name: HD up to 4K
+  - name: Basic Waveform Editing
+  - name: Remove Loom Branding
+  - name: Engagement Insights
+  - name: Password-Protected Videos
+  - name: Priority Support
+- id: loom-business-ai
+  name: Business + AI (Loom AI)
+  type: paid
+  description: Business plan plus Loom AI features.
+  entries:
+  - label: Per-Seat
+    name: seat
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: monthly
+    geo: global
+    unit: 1
+    price: 24
+    userMultiplied: true
+  elements:
+  - name: Auto Video Enhancement
+  - name: Advanced Editing
+  - name: Video-to-Text Automation
+  - name: Auto Meeting Recap Emails
+  - name: Filler-Word Removal
+  - name: Auto-Generated Summaries
+- id: loom-enterprise
+  name: Enterprise
+  type: enterprise
+  description: For large organizations with security, compliance, and integration
+    requirements. Custom pricing.
+  entries:
+  - label: Per-Seat Subscription
+    name: seat
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: annual
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: true
+  elements:
+  - name: SAML SSO
+  - name: SCIM Provisioning
+  - name: 99.95% Uptime SLA
+  - name: Salesforce Integration
+  - name: EBA Compliance
+  - name: Dedicated Account Manager
+  - name: Custom Onboarding
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

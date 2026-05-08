@@ -5,7 +5,7 @@ provider: Loom
 providerId: loom
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
 - Productivity
 - Video
@@ -15,11 +15,13 @@ tags:
 - FinOps
 - Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Loom. Pipeline will replace with the provider's
-  real billing-model details once researched.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: FOCUS-aligned FinOps profile for Loom. Loom bills primarily as a per-seat
+  monthly subscription across Starter (free), Business, Business + AI, and Enterprise
+  tiers. Developer SDK use does not add metered API charges; cost scales with seat count
+  and selected tier.
 sources:
-- https://www.loom.com/
+- https://www.loom.com/pricing
+- https://dev.loom.com/
 - https://focus.finops.org/focus-specification/v1-3/
 alignedWith:
   framework: FinOps Foundation Framework
@@ -27,41 +29,45 @@ alignedWith:
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-publisherName: Loom
+publisherName: Atlassian (Loom)
 serviceCategory: Productivity
 billingModel:
-  pricingCategory: To Be Reconciled
-  billingFrequency: Monthly
+  pricingCategory: Subscription (Per Seat)
+  billingFrequency: Monthly or Annual
   billingCurrency: USD
   chargeCategories:
-  - Usage
   - Purchase
   - Adjustment
 focusColumns:
   ServiceName: Loom
   ServiceCategory: Productivity
   ProviderName: Loom
-  PublisherName: Loom
-  InvoiceIssuerName: Loom
+  PublisherName: Atlassian
+  InvoiceIssuerName: Atlassian
   BillingCurrency: USD
-  ChargeCategory: Usage
+  ChargeCategory: Purchase
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation against the provider's published metering.
-  unit: varies
+- name: seats
+  description: Per-user monthly subscription. Business $18/seat, Business+AI $24/seat,
+    Enterprise contract.
+  unit: seat
   aggregation: sum
   dimensions:
-  - account
-  - resource
+  - workspace
+  - plan
 principles:
 - name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
+  description: Use Loom workspace billing reports to inventory active seats per workspace
+    and plan.
 - name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
+  description: Allocate seats by team membership; tag enterprise contracts to the procuring
+    business unit.
 - name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
+  description: Reclaim seats from inactive users; choose annual billing for the 17%
+    discount; downgrade Business+AI seats that don't use AI features.
 - name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  description: Assign a workspace owner; review monthly seat counts against active-user
+    reports.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

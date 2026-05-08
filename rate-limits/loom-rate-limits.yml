@@ -15,22 +15,47 @@ tags:
 - Rate Limiting
 - Quotas
 - Throttling
-description: Placeholder rate-limit artifact for Loom. Replace with real limits once the pipeline
-  researches the provider's rate-limit documentation.
-notes: Initial scaffold — limits have not yet been reconciled against the provider's documentation.
+description: Loom does not publish per-endpoint request-rate ceilings for its developer
+  SDKs (recordSDK, embedSDK, oEmbed) or SCIM endpoint. Plan-level constraints (max video
+  count and recording length on Starter) act as the primary user-facing quota.
+notes: Throttling guidance is not in the public Loom developer portal at the time of
+  reconciliation. SCIM endpoints follow standard SCIM 2.0 conventions; assume conservative
+  per-tenant rate ceilings and use exponential backoff on 429.
 sources:
-- https://www.loom.com/
+- https://dev.loom.com/
+- https://www.loom.com/pricing
 responseCodes:
   throttled: 429
 limits:
-- name: Default
+- name: Starter Video Cap
   scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+  metric: video
+  limit: 25
+  timeFrame: lifetime
+  notes: Free tier hard cap on number of videos.
+- name: Starter Recording Length
+  scope: recording
+  metric: minute
+  limit: 5
+  timeFrame: per-recording
+  notes: Free tier maximum length per recording.
+- name: SCIM Endpoint
+  scope: tenant
+  metric: request
+  limit: not published
+  notes: Apply exponential backoff with jitter on 429 responses.
+- name: oEmbed Endpoint
+  scope: client
+  metric: request
+  limit: not published
+  notes: Cache embed responses where possible.
 policies:
 - name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  description: Honor 429 responses with exponential backoff and jitter; honor any
+    Retry-After header.
+- name: Cache oEmbed Results
+  description: Cache the oEmbed response for a video URL rather than re-fetching on every
+    page render.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
