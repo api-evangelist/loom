@@ -1,7 +1,7 @@
 aid: loom
 url: https://raw.githubusercontent.com/api-evangelist/loom/refs/heads/main/apis.yml
 name: Loom
-x-type: company
+kind: company
 description: >-
   Loom is an async video messaging platform (now part of Atlassian) used by teams to record screen, voice, and camera. The Loom developer platform exposes the recordSDK and embedSDK for embedding recording and playback into other apps, plus SCIM provisioning and SSO/admin APIs available on Business and Enterprise plans.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -55,7 +55,7 @@ apis:
     baseURL: https://www.loom.com/v1/oembed
     properties:
       - url: https://www.loom.com/v1/oembed
-        type: API Reference
+        type: APIReference
     description: >-
       oEmbed-compatible endpoint that returns rich embed metadata (HTML, thumbnail, width, height) for a given Loom video URL.
   - aid: loom:loom-scim-api
