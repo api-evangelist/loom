@@ -1,0 +1,68 @@
+aid: loom
+name: Loom
+reviewType: webhook-streaming-surface
+reviewedBy: API Evangelist
+reviewDate: '2026-05-30'
+sources:
+  - url: https://dev.loom.com/
+    type: DeveloperPortal
+  - url: https://dev.loom.com/docs/record-sdk/getting-started
+    type: Documentation
+  - url: https://dev.loom.com/docs/record-sdk/details/api
+    type: APIReference
+  - url: https://dev.loom.com/docs/embed-sdk/getting-started
+    type: Documentation
+  - url: https://dev.loom.com/docs/embed-sdk/api
+    type: APIReference
+  - url: https://support.atlassian.com/loom/
+    type: Support
+findings:
+  webhooksDocumented: false
+  streamingDocumented: false
+  eventSubscriptionsDocumented: false
+  serverToServerCallbacksDocumented: false
+  summary: >-
+    Loom's public developer portal at dev.loom.com documents only client-side
+    JavaScript SDKs (recordSDK and embedSDK) plus an oEmbed endpoint. No
+    server-to-server webhooks, event subscriptions, push notifications, or
+    streaming event surfaces are documented. There is no documented
+    transcript-ready, video-uploaded, or upload-completed webhook delivered to
+    a customer-controlled URL. The Atlassian-hosted Loom support center
+    likewise surfaces no webhook articles.
+clientSideEventsFound:
+  context: >-
+    The recordSDK exposes a client-side ButtonEmitterEvents interface. These
+    are in-browser JavaScript events fired on the SDKButton instance, NOT
+    server-delivered webhooks. They are listed here for completeness so they
+    are not mistaken for a webhook surface.
+  source: https://dev.loom.com/docs/record-sdk/details/api
+  events:
+    - name: bubble-drag-end
+      description: Camera bubble dragging has ended.
+    - name: bubble-drag-start
+      description: Camera bubble dragging has begun.
+    - name: bubble-move
+      description: Camera bubble is moved.
+    - name: cancel
+      description: Recording is cancelled.
+    - name: complete
+      description: User has selected finish recording.
+    - name: insert-click
+      description: Insert CTA has been selected.
+    - name: lifecycle-update
+      description: Lifecycle state change occurs.
+    - name: recording-complete
+      description: Recording is ended (upload may be in progress).
+    - name: recording-start
+      description: Video capture has begun.
+    - name: start
+      description: User has selected start recording.
+    - name: upload-complete
+      description: Recording has finished uploading to Loom.
+recommendation: >-
+  Do not model a webhook OpenAPI or AsyncAPI specification for Loom at this
+  time. The hard-rule "no fabrication" forbids inventing a server-side webhook
+  contract that the vendor does not publish. Re-check the developer portal
+  after future Atlassian/Loom platform updates - a transcript-ready or
+  upload-complete webhook would be the natural addition given the
+  client-side event vocabulary already in place.
