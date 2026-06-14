@@ -1,0 +1,746 @@
+# Loom GraphQL Schema
+# Conceptual schema based on Loom REST API and developer documentation
+# https://support.loom.com/hc/en-us/articles/4420225668251
+
+scalar DateTime
+scalar URL
+scalar JSON
+
+# ─── VIDEO CORE ───────────────────────────────────────────────────────────────
+
+type Video {
+  id: ID!
+  details: VideoDetails
+  title: VideoTitle
+  description: VideoDescription
+  transcript: VideoTranscript
+  thumbnail: VideoThumbnail
+  privacy: VideoPrivacy
+  link: VideoLink
+  shareLink: ShareLink
+  embedCode: EmbedCode
+  recording: Recording
+  analytics: VideoAnalytics
+  summary: VideoSummary
+  chapters: [Chapter]
+  reactions: [VideoReaction]
+  comments: [VideoComment]
+  timestamps: [VideoTimestamp]
+  createdAt: DateTime
+  updatedAt: DateTime
+  duration: Int
+  workspaceId: ID
+  folderId: ID
+  ownerId: ID
+}
+
+type VideoDetails {
+  id: ID!
+  videoId: ID!
+  width: Int
+  height: Int
+  quality: VideoQuality
+  resolution: Resolution
+  fileSize: Int
+  mimeType: String
+  status: String
+  processingProgress: Float
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type VideoTitle {
+  id: ID!
+  videoId: ID!
+  text: String!
+  updatedAt: DateTime
+}
+
+type VideoDescription {
+  id: ID!
+  videoId: ID!
+  text: String
+  html: String
+  updatedAt: DateTime
+}
+
+type VideoTranscript {
+  id: ID!
+  videoId: ID!
+  language: String
+  words: [TranscriptWord]
+  captions: [TranscriptCaption]
+  generatedAt: DateTime
+}
+
+type TranscriptWord {
+  id: ID!
+  transcriptId: ID!
+  text: String!
+  startTime: Float!
+  endTime: Float!
+  confidence: Float
+  speakerId: String
+}
+
+type TranscriptCaption {
+  id: ID!
+  transcriptId: ID!
+  text: String!
+  startTime: Float!
+  endTime: Float!
+  language: String
+}
+
+type VideoThumbnail {
+  id: ID!
+  videoId: ID!
+  url: URL!
+  width: Int
+  height: Int
+  kind: String
+  generatedAt: DateTime
+}
+
+type VideoTimestamp {
+  id: ID!
+  videoId: ID!
+  time: Float!
+  label: String
+  description: String
+  createdBy: ID
+  createdAt: DateTime
+}
+
+type VideoLink {
+  id: ID!
+  videoId: ID!
+  url: URL!
+  shortUrl: URL
+  expiresAt: DateTime
+  createdAt: DateTime
+}
+
+# ─── ENGAGEMENT ───────────────────────────────────────────────────────────────
+
+type VideoReaction {
+  id: ID!
+  videoId: ID!
+  emoji: String!
+  timestamp: Float
+  userId: ID
+  userName: String
+  createdAt: DateTime
+}
+
+type VideoComment {
+  id: ID!
+  videoId: ID!
+  text: String!
+  timestamp: CommentTimestamp
+  authorId: ID
+  authorName: String
+  authorEmail: String
+  parentId: ID
+  replies: [VideoComment]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type CommentTimestamp {
+  id: ID!
+  commentId: ID!
+  videoTime: Float!
+  formattedTime: String
+}
+
+type Chapter {
+  id: ID!
+  videoId: ID!
+  title: ChapterTitle
+  summary: ChapterSummary
+  startTime: Float!
+  endTime: Float
+  order: Int
+}
+
+type ChapterTitle {
+  id: ID!
+  chapterId: ID!
+  text: String!
+  generatedByAI: Boolean
+}
+
+type ChapterSummary {
+  id: ID!
+  chapterId: ID!
+  text: String!
+  generatedByAI: Boolean
+  generatedAt: DateTime
+}
+
+type VideoSummary {
+  id: ID!
+  videoId: ID!
+  aiSummary: AISummary
+  highlights: [SummaryHighlight]
+  generatedAt: DateTime
+}
+
+type AISummary {
+  id: ID!
+  videoSummaryId: ID!
+  text: String!
+  model: String
+  language: String
+  generatedAt: DateTime
+}
+
+type SummaryHighlight {
+  id: ID!
+  videoSummaryId: ID!
+  text: String!
+  startTime: Float
+  endTime: Float
+  importance: Float
+  order: Int
+}
+
+# ─── SHARING AND PRIVACY ──────────────────────────────────────────────────────
+
+type ShareLink {
+  id: ID!
+  videoId: ID!
+  url: URL!
+  shortUrl: URL
+  privacy: VideoPrivacy
+  password: VideoPassword
+  allowedEmails: AllowedEmails
+  allowedDomains: AllowedDomains
+  expiresAt: DateTime
+  createdAt: DateTime
+}
+
+type EmbedCode {
+  id: ID!
+  videoId: ID!
+  html: String!
+  width: Int
+  height: Int
+  responsive: Boolean
+  autoplay: Boolean
+  showTitle: Boolean
+  muted: Boolean
+}
+
+type VideoPrivacy {
+  id: ID!
+  videoId: ID!
+  type: PrivacyType!
+  passwordProtected: Boolean
+  linkSharingEnabled: Boolean
+  embedEnabled: Boolean
+  downloadEnabled: Boolean
+  updatedAt: DateTime
+}
+
+enum PrivacyType {
+  PUBLIC
+  WORKSPACE
+  PRIVATE
+  PASSWORD
+  ALLOWED_EMAILS
+  ALLOWED_DOMAINS
+}
+
+type VideoPassword {
+  id: ID!
+  videoId: ID!
+  isSet: Boolean!
+  hint: String
+  updatedAt: DateTime
+}
+
+type AllowedEmails {
+  id: ID!
+  videoId: ID!
+  emails: [String!]!
+  updatedAt: DateTime
+}
+
+type AllowedDomains {
+  id: ID!
+  videoId: ID!
+  domains: [String!]!
+  updatedAt: DateTime
+}
+
+# ─── RECORDING ────────────────────────────────────────────────────────────────
+
+type Recording {
+  id: ID!
+  videoId: ID!
+  settings: RecordingSettings
+  cameraLayout: CameraLayout
+  screenLayout: ScreenLayout
+  speakerLayout: SpeakerLayout
+  audioSettings: AudioSettings
+  quality: VideoQuality
+  resolution: Resolution
+  startedAt: DateTime
+  endedAt: DateTime
+  duration: Int
+  source: String
+}
+
+type RecordingSettings {
+  id: ID!
+  recordingId: ID!
+  includeCamera: Boolean
+  includeMicrophone: Boolean
+  includeSystemAudio: Boolean
+  includeScreen: Boolean
+  countdownSeconds: Int
+  autoStopAfterSeconds: Int
+}
+
+type CameraLayout {
+  id: ID!
+  recordingId: ID!
+  position: String
+  size: String
+  shape: String
+  enabled: Boolean
+}
+
+type ScreenLayout {
+  id: ID!
+  recordingId: ID!
+  captureMode: String
+  displayId: String
+  applicationId: String
+  windowId: String
+}
+
+type SpeakerLayout {
+  id: ID!
+  recordingId: ID!
+  mode: String
+  showNameTag: Boolean
+  cameraZoom: Boolean
+}
+
+type AudioSettings {
+  id: ID!
+  recordingId: ID!
+  microphoneDeviceId: String
+  microphoneLabel: String
+  noiseCancellation: Boolean
+  echoCancellation: Boolean
+  gainLevel: Float
+}
+
+type VideoQuality {
+  id: ID!
+  label: String!
+  bitrate: Int
+  fps: Int
+}
+
+type Resolution {
+  id: ID!
+  width: Int!
+  height: Int!
+  label: String
+  aspectRatio: String
+}
+
+# ─── WORKSPACE AND ORGANIZATION ───────────────────────────────────────────────
+
+type Workspace {
+  id: ID!
+  details: WorkspaceDetails
+  folders: [WorkspaceFolder]
+  members: [Member]
+  integrations: [Integration]
+  playlists: [Playlist]
+  analytics: Analytics
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type WorkspaceDetails {
+  id: ID!
+  workspaceId: ID!
+  name: String!
+  slug: String
+  domain: String
+  logoUrl: URL
+  plan: String
+  ssoEnabled: Boolean
+  scimEnabled: Boolean
+  memberCount: Int
+  videoCount: Int
+  storageUsedBytes: Int
+  createdAt: DateTime
+}
+
+type WorkspaceFolder {
+  id: ID!
+  workspaceId: ID!
+  folder: Folder
+  order: Int
+  pinnedAt: DateTime
+}
+
+type Folder {
+  id: ID!
+  name: String!
+  details: FolderDetails
+  access: FolderAccess
+  parentId: ID
+  children: [Folder]
+  videos: [Video]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type FolderDetails {
+  id: ID!
+  folderId: ID!
+  description: String
+  videoCount: Int
+  totalDurationSeconds: Int
+  thumbnailUrl: URL
+  lastActivityAt: DateTime
+}
+
+type FolderAccess {
+  id: ID!
+  folderId: ID!
+  visibility: String
+  editableByMembers: Boolean
+  sharedWith: [Member]
+  updatedAt: DateTime
+}
+
+# ─── MEMBERS AND PERMISSIONS ──────────────────────────────────────────────────
+
+type Member {
+  id: ID!
+  workspaceId: ID!
+  email: String!
+  name: String
+  avatarUrl: URL
+  role: MemberRole
+  permission: MemberPermission
+  scimManaged: Boolean
+  joinedAt: DateTime
+  lastActiveAt: DateTime
+}
+
+type MemberRole {
+  id: ID!
+  name: String!
+  label: String
+  description: String
+  isOwner: Boolean
+  isAdmin: Boolean
+  isGuest: Boolean
+}
+
+type MemberPermission {
+  id: ID!
+  memberId: ID!
+  canRecord: Boolean
+  canUpload: Boolean
+  canShare: Boolean
+  canCreateFolders: Boolean
+  canInviteMembers: Boolean
+  canManageWorkspace: Boolean
+  canViewAnalytics: Boolean
+  canManageIntegrations: Boolean
+}
+
+# ─── INTEGRATIONS ─────────────────────────────────────────────────────────────
+
+interface Integration {
+  id: ID!
+  workspaceId: ID!
+  provider: String!
+  enabled: Boolean!
+  connectedAt: DateTime
+  connectedBy: ID
+}
+
+type SlackIntegration implements Integration {
+  id: ID!
+  workspaceId: ID!
+  provider: String!
+  enabled: Boolean!
+  connectedAt: DateTime
+  connectedBy: ID
+  slackWorkspaceId: String
+  slackWorkspaceName: String
+  defaultChannelId: String
+  notifyOnShare: Boolean
+  notifyOnComment: Boolean
+  unfurlEnabled: Boolean
+}
+
+type JiraIntegration implements Integration {
+  id: ID!
+  workspaceId: ID!
+  provider: String!
+  enabled: Boolean!
+  connectedAt: DateTime
+  connectedBy: ID
+  jiraSiteUrl: URL
+  jiraSiteId: String
+  projectKeys: [String]
+  attachVideoToIssue: Boolean
+}
+
+type NotionIntegration implements Integration {
+  id: ID!
+  workspaceId: ID!
+  provider: String!
+  enabled: Boolean!
+  connectedAt: DateTime
+  connectedBy: ID
+  notionWorkspaceId: String
+  notionWorkspaceName: String
+  embedByDefault: Boolean
+}
+
+# ─── PLAYLISTS ────────────────────────────────────────────────────────────────
+
+type Playlist {
+  id: ID!
+  workspaceId: ID!
+  name: String!
+  description: String
+  videos: [PlaylistVideo]
+  visibility: String
+  thumbnailUrl: URL
+  createdBy: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type PlaylistVideo {
+  id: ID!
+  playlistId: ID!
+  video: Video!
+  order: Int!
+  addedAt: DateTime
+  addedBy: ID
+}
+
+# ─── ANALYTICS ────────────────────────────────────────────────────────────────
+
+type Analytics {
+  id: ID!
+  workspaceId: ID!
+  totalVideos: Int
+  totalViews: Int
+  totalViewDurationSeconds: Int
+  activeViewers: Int
+  topVideos: [Video]
+  period: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+type VideoAnalytics {
+  id: ID!
+  videoId: ID!
+  viewCount: ViewCount
+  viewDuration: ViewDuration
+  engagementRate: EngagementRate
+  viewers: [Viewer]
+  reactionCount: Int
+  commentCount: Int
+  shareCount: Int
+  period: String
+  startDate: DateTime
+  endDate: DateTime
+}
+
+type ViewCount {
+  id: ID!
+  videoAnalyticsId: ID!
+  total: Int!
+  unique: Int
+  anonymous: Int
+  authenticated: Int
+  daily: [DailyCount]
+}
+
+type DailyCount {
+  date: DateTime!
+  count: Int!
+}
+
+type ViewDuration {
+  id: ID!
+  videoAnalyticsId: ID!
+  totalSeconds: Int!
+  averageSeconds: Float
+  medianSeconds: Float
+  completionRate: Float
+  dropOffPoints: [DropOffPoint]
+}
+
+type DropOffPoint {
+  videoTime: Float!
+  viewerCount: Int!
+  percentage: Float
+}
+
+type EngagementRate {
+  id: ID!
+  videoAnalyticsId: ID!
+  overall: Float!
+  reactionRate: Float
+  commentRate: Float
+  shareRate: Float
+  clickThroughRate: Float
+}
+
+type Viewer {
+  id: ID!
+  videoAnalyticsId: ID!
+  details: ViewerDetails
+  firstViewedAt: DateTime
+  lastViewedAt: DateTime
+  viewCount: Int
+  totalWatchedSeconds: Int
+  completionRate: Float
+}
+
+type ViewerDetails {
+  id: ID!
+  viewerId: ID!
+  name: String
+  email: String
+  avatarUrl: URL
+  isWorkspaceMember: Boolean
+  country: String
+  device: String
+  browser: String
+}
+
+# ─── AUTH AND WEBHOOKS ────────────────────────────────────────────────────────
+
+type APIKey {
+  id: ID!
+  workspaceId: ID!
+  name: String!
+  prefix: String!
+  scopes: [String]
+  createdAt: DateTime
+  expiresAt: DateTime
+  lastUsedAt: DateTime
+  createdBy: ID
+}
+
+type Token {
+  id: ID!
+  workspaceId: ID!
+  tokenType: String!
+  accessToken: String
+  refreshToken: String
+  scopes: [String]
+  expiresAt: DateTime
+  issuedAt: DateTime
+  issuedTo: String
+}
+
+type Webhook {
+  id: ID!
+  workspaceId: ID!
+  url: URL!
+  events: [String!]!
+  secret: String
+  active: Boolean!
+  createdAt: DateTime
+  updatedAt: DateTime
+  lastDeliveredAt: DateTime
+  failureCount: Int
+}
+
+# ─── QUERIES ──────────────────────────────────────────────────────────────────
+
+type Query {
+  video(id: ID!): Video
+  videos(workspaceId: ID!, folderId: ID, first: Int, after: String): VideoConnection
+  folder(id: ID!): Folder
+  folders(workspaceId: ID!, parentId: ID): [Folder]
+  workspace(id: ID!): Workspace
+  member(id: ID!): Member
+  members(workspaceId: ID!, first: Int, after: String): MemberConnection
+  playlist(id: ID!): Playlist
+  playlists(workspaceId: ID!): [Playlist]
+  videoAnalytics(videoId: ID!, startDate: DateTime, endDate: DateTime): VideoAnalytics
+  analytics(workspaceId: ID!, startDate: DateTime, endDate: DateTime): Analytics
+  webhooks(workspaceId: ID!): [Webhook]
+  apiKeys(workspaceId: ID!): [APIKey]
+}
+
+# ─── MUTATIONS ────────────────────────────────────────────────────────────────
+
+type Mutation {
+  updateVideoTitle(videoId: ID!, title: String!): VideoTitle
+  updateVideoDescription(videoId: ID!, description: String!): VideoDescription
+  updateVideoPrivacy(videoId: ID!, privacyType: PrivacyType!): VideoPrivacy
+  setVideoPassword(videoId: ID!, password: String): VideoPassword
+  addVideoComment(videoId: ID!, text: String!, videoTime: Float): VideoComment
+  deleteVideoComment(commentId: ID!): Boolean
+  addVideoReaction(videoId: ID!, emoji: String!, videoTime: Float): VideoReaction
+  createFolder(workspaceId: ID!, name: String!, parentId: ID): Folder
+  updateFolder(folderId: ID!, name: String): Folder
+  deleteFolder(folderId: ID!): Boolean
+  moveVideoToFolder(videoId: ID!, folderId: ID!): Video
+  inviteMember(workspaceId: ID!, email: String!, roleId: ID): Member
+  removeMember(memberId: ID!): Boolean
+  createPlaylist(workspaceId: ID!, name: String!, description: String): Playlist
+  addVideoToPlaylist(playlistId: ID!, videoId: ID!): PlaylistVideo
+  removeVideoFromPlaylist(playlistId: ID!, videoId: ID!): Boolean
+  createWebhook(workspaceId: ID!, url: URL!, events: [String!]!): Webhook
+  updateWebhook(webhookId: ID!, url: URL, events: [String], active: Boolean): Webhook
+  deleteWebhook(webhookId: ID!): Boolean
+  createAPIKey(workspaceId: ID!, name: String!, scopes: [String]): APIKey
+  revokeAPIKey(apiKeyId: ID!): Boolean
+}
+
+# ─── CONNECTIONS ──────────────────────────────────────────────────────────────
+
+type VideoConnection {
+  edges: [VideoEdge]
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type VideoEdge {
+  node: Video
+  cursor: String!
+}
+
+type MemberConnection {
+  edges: [MemberEdge]
+  pageInfo: PageInfo!
+  totalCount: Int
+}
+
+type MemberEdge {
+  node: Member
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
