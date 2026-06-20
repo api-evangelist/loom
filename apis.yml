@@ -6,7 +6,7 @@ description: Loom is an async video messaging platform (now part of Atlassian) u
   by teams to record screen, voice, and camera. The Loom developer platform exposes
   the recordSDK and embedSDK for embedding recording and playback into other apps,
   plus SCIM provisioning and SSO/admin APIs available on Business and Enterprise plans.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Productivity
 - Video
@@ -23,7 +23,7 @@ apis:
   - Recording
   - SDK
   - Browser
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dev.loom.com/
   baseURL: https://www.loom.com
   properties:
@@ -43,7 +43,7 @@ apis:
   - Embed
   - Video
   - Player
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dev.loom.com/
   baseURL: https://www.loom.com
   properties:
@@ -57,7 +57,7 @@ apis:
   tags:
   - oEmbed
   - Embed
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.loom.com/v1/oembed
   baseURL: https://www.loom.com/v1/oembed
   properties:
@@ -71,7 +71,7 @@ apis:
   - SCIM
   - Provisioning
   - Identity
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://support.loom.com/hc/en-us/articles/4416322052749
   baseURL: https://www.loom.com
   properties:
@@ -86,7 +86,7 @@ apis:
   - SSO
   - SAML
   - Identity
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://support.loom.com/hc/en-us/articles/360060748013
   baseURL: https://www.loom.com
   properties:
