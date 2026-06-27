@@ -30,7 +30,7 @@ apis:
   - url: https://dev.loom.com/
     type: Documentation
   - url: https://github.com/loomhq/record-sdk
-    type: SDK
+    type: SDKs
   - url: graphql/loom-graphql.md
     type: GraphQL
   description: Embed Loom's recording experience directly into your web app. The recordSDK
