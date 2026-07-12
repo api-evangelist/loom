@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://www.atlassian.com/legal/security-measures
+url: https://www.atlassian.com/legal/security-measures
+certifications:
+- FedRAMP
+evidence:
+- source: https://www.atlassian.com/legal/security-measures
+  keywords:
+  - fedramp
+  - trust center

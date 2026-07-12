@@ -96,6 +96,10 @@ apis:
     per workspace from the admin console; not a customer-callable REST API but documented
     as part of the Loom platform integration surface.
 common:
+- type: TrustCenter
+  url: security/loom-trust-center.yml
+- type: DomainSecurity
+  url: security/loom-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/useloom
 - type: Website
@@ -114,6 +118,8 @@ common:
   url: finops/loom-finops.yml
 - type: Review
   url: review.yml
+- url: https://www.atlassian.com/blog/loom
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
