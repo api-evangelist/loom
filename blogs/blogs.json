@@ -1,0 +1,14 @@
+{
+  "repo": "loom",
+  "feeds": [
+    {
+      "source": "https://www.atlassian.com/blog/loom",
+      "feed_url": "https://www.atlassian.com/blog/comments/feed",
+      "title": "",
+      "saved": 4,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 9
+}
