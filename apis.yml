@@ -6,7 +6,19 @@ description: Loom is an async video messaging platform (now part of Atlassian) u
   by teams to record screen, voice, and camera. The Loom developer platform exposes
   the recordSDK and embedSDK for embedding recording and playback into other apps,
   plus SCIM provisioning and SSO/admin APIs available on Business and Enterprise plans.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/loom.png
 tags:
 - Productivity
 - Video
