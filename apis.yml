@@ -36,18 +36,20 @@ tags:
 - Async
 - Communications
 - Software-as-a-Service
+- Collaboration
 tags_raw:
 - Productivity
 - Video
 - Async
 - Communication
 - SaaS
+- Collaboration
 created: '2026-05-08'
 modified: '2026-05-30'
 specificationVersion: '0.23'
 apis:
 - aid: loom:loom-record-sdk
-  name: Loom recordSDK
+  name: Loom Record SDK API
   tags:
   - Recording
   - SDK
@@ -60,14 +62,12 @@ apis:
     type: Documentation
   - url: https://github.com/loomhq/record-sdk
     type: SDKs
-  - url: graphql/loom-graphql.md
-    type: GraphQL
   description: Embed Loom's recording experience directly into your web app. The recordSDK
     lets users record screen, mic, and camera, and uploads the resulting video to
     a Loom-hosted account. Authenticated via OAuth client credentials issued from
     the developer portal.
 - aid: loom:loom-embed-sdk
-  name: Loom embedSDK
+  name: Loom Embed SDK API
   tags:
   - Embed
   - Video
