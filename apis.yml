@@ -30,6 +30,10 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/loom.png
+x-docs-platform: docusaurus
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: vercel
 tags:
 - Productivity
 - Video
@@ -56,7 +60,6 @@ apis:
   - Browser
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dev.loom.com/
-  baseURL: https://www.loom.com
   properties:
   - url: https://dev.loom.com/
     type: Documentation
@@ -74,7 +77,6 @@ apis:
   - Player
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://dev.loom.com/
-  baseURL: https://www.loom.com
   properties:
   - url: https://dev.loom.com/
     type: Documentation
@@ -102,7 +104,6 @@ apis:
   - Identity
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://support.loom.com/hc/en-us/articles/4416322052749
-  baseURL: https://www.loom.com
   properties:
   - url: https://support.loom.com/hc/en-us/articles/4416322052749
     type: Documentation
@@ -117,7 +118,6 @@ apis:
   - Identity
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://support.loom.com/hc/en-us/articles/360060748013
-  baseURL: https://www.loom.com
   properties:
   - url: https://support.loom.com/hc/en-us/articles/360060748013
     type: Documentation
