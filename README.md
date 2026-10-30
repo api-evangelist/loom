@@ -1,4 +1,4 @@
-# Loom (loom)
+# Loom
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,55 +64,114 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Loom is an async video messaging platform (now part of Atlassian) used by teams to record screen, voice, and camera. The Loom developer platform exposes the recordSDK and embedSDK for embedding recording and playback into other apps, plus SCIM provisioning and SSO available on Enterprise.
+Loom is an async video messaging platform (now part of Atlassian) used by teams to record screen, voice, and camera. The Loom developer platform exposes the recordSDK and embedSDK for embedding recording and playback into other apps, plus SCIM provisioning and SSO/admin APIs available on Business and Enterprise plans.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/loom/refs/heads/main/apis.yml)
+**Areas:** Productivity · Video · Async · Communications · Software-as-a-Service · Collaboration
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=loom-api-evangelist&utm_content=repo)
+## Loom on APIs.io
 
-## Type
+Everything profiled for Loom is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/loom/](https://apis.io/providers/loom/)** — or go straight to one of the APIs or properties below.
 
-- **x-type:** company
+### APIs (5)
 
-## Tags:
+- [Loom Record SDK API](https://apis.io/apis/loom/loom-record-sdk/) — Embed Loom's recording experience directly into your web app. The recordSDK lets users record screen, mic, and camera, and uploads the resulting video to a…
+- [Loom Embed SDK API](https://apis.io/apis/loom/loom-embed-sdk/) — Embed the Loom video player into a web page or app, with playback controls, captions, and engagement events. Includes an oEmbed endpoint for converting a…
+- [Loom oEmbed API](https://apis.io/apis/loom/loom-oembed-api/) — oEmbed-compatible endpoint that returns rich embed metadata (HTML, thumbnail, width, height) for a given Loom video URL.
+- [Loom SCIM Provisioning API](https://apis.io/apis/loom/loom-scim-api/) — SCIM 2.0 user and group provisioning endpoint for Enterprise customers. Integrates with Okta, Azure AD, OneLogin, and other IdPs to automate workspace…
+- [Loom SSO (SAML) Configuration](https://apis.io/apis/loom/loom-sso-api/) — SAML 2.0 single sign-on configuration for Enterprise workspaces. Configurable per workspace from the admin console; not a customer-callable REST API but…
 
- - Productivity, Video, Async, Communication, SaaS
+### Published properties
 
-## Timestamps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- **Created:** 2026-05-08
-- **Modified:** 2026-05-08
+#### GraphQL (1)
 
-## APIs
+GraphQL schemas.
 
-| API | Description |
-|---|---|
-| Loom recordSDK | Embed Loom recording (screen/cam/mic) directly into a web app. |
-| Loom embedSDK | Embed the Loom player with engagement events into a web app. |
-| Loom oEmbed API | oEmbed metadata for a Loom video URL. |
-| Loom SCIM Provisioning API | SCIM 2.0 user/group provisioning for Enterprise. |
-| Loom SSO (SAML) | SAML 2.0 SSO configuration for Enterprise workspaces. |
+- [Moved to /providers/loom/](https://apis.io/graphqls/loom/loom-graphql/)
 
-## Common Properties
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Loom Domain Security](https://apis.io/security/loom/loom-domain-security/)
+- [Loom Trust Center](https://apis.io/security/loom/loom-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Loom Plans Pricing](https://apis.io/plans/loom/loom-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Loom Rate Limits](https://apis.io/rate-limits/loom/loom-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Loom Finops](https://apis.io/finops/loom/loom-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.loom.com/)
-- [Developer Portal](https://dev.loom.com/)
 - [Pricing](https://www.loom.com/pricing)
-- [GitHub](https://github.com/loomhq)
-- [Plans](plans/loom-plans-pricing.yml) — API Commons Plans 0.1
-- [RateLimits](rate-limits/loom-rate-limits.yml) — API Commons Rate Limits 0.1
-- [FinOps](finops/loom-finops.yml) — FOCUS-aligned FinOps Framework 1.0
+- [Blog](https://www.atlassian.com/blog/loom)
 
-## Artifacts
+## API Evangelist rating
 
-| Artifact | Path | Notes |
-|---|---|---|
-| Plans | `plans/loom-plans-pricing.yml` | Starter (free) / Business $18 / Business+AI $24 / Enterprise |
-| Rate Limits | `rate-limits/loom-rate-limits.yml` | Plan-level video/length quotas; SCIM/oEmbed limits not publicly documented |
-| FinOps | `finops/loom-finops.yml` | Per-seat subscription billing |
+**Kin Score 19.7** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 35.7 |
+| Access clarity | 26.3 |
 
-**FN:** Kin Lane
+**Agent readiness 0.6** — human-only
 
-**Email:** kin@apievangelist.com
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/loom/](https://apis.io/providers/loom/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Loom: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/loom/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
